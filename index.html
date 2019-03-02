@@ -47,15 +47,15 @@
     </div> 
     <script>
       window.onload=()=>{
-	      const loc1 = document.getElementById("location1");
-        const loc2 = document.getElementById("location2");
+	const loc1 = document.getElementById("location1").value;
+        const loc2 = document.getElementById("location2").value;
   
         let insertNode = ((refNode,newNode)=>{
   	      refNode.appendChild(newNode);
         });
   
         loc1.addEventListener("keyup",(e)=>{
-  	        
+  		console.log(loc1);
         });
  
       };
