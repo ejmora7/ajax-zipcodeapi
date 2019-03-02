@@ -56,7 +56,9 @@
         });
   
         loc1.addEventListener("keyup",(e)=>{
-  		console.log(loc1.value);
+  		let locVal = loc1.value;
+		locVal.toLowerCase();
+		console.log(locVal);
         });
  
       };
