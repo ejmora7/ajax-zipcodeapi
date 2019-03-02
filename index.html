@@ -50,7 +50,7 @@
       window.onload=()=>{
 	const loc1 = document.getElementById("location1");
 	let loc1Input = loc1.value;
-	loc1Input.toLowerCase();
+	
 	      
         const loc2 = document.getElementById("location2");
   
@@ -59,6 +59,7 @@
         });
   
         loc1.addEventListener("keyup",(e)=>{
+		loc1Input.toLowerCase();
 		console.log(loc1Input);
         });
  
