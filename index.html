@@ -49,6 +49,7 @@
     <script type="text/javascript">
       window.onload=()=>{
 	const loc1 = document.getElementById("location1");
+	let loc1Input = loc1.value.toLowerCase();
         const loc2 = document.getElementById("location2");
   
         let insertNode = ((refNode,newNode)=>{
@@ -56,9 +57,7 @@
         });
   
         loc1.addEventListener("keyup",(e)=>{
-  		let locVal = loc1.value;
-		locVal.toLowerCase();
-		console.log(locVal);
+		console.log(loc1Input);
         });
  
       };
