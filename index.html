@@ -49,7 +49,9 @@
     <script type="text/javascript">
       window.onload=()=>{
 	const loc1 = document.getElementById("location1");
-	let loc1Input = loc1.value.toLowerCase();
+	let loc1Input = loc1.value;
+	loc1Input.toLowerCase();
+	      
         const loc2 = document.getElementById("location2");
   
         let insertNode = ((refNode,newNode)=>{
