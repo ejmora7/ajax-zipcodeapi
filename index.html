@@ -48,10 +48,7 @@
     </div> 
     <script type="text/javascript">
       window.onload=()=>{
-	const loc1 = document.getElementById("location1");
-	
-	
-	      
+	const loc1 = document.getElementById("location1");      
         const loc2 = document.getElementById("location2");
   
         let insertNode = ((refNode,newNode)=>{
@@ -60,13 +57,10 @@
   
         loc1.addEventListener("keyup",(e)=>{
 		let locValue = loc1.value;
-		let locInputText = loc1.textContent;
-		console.log("value");
-		console.log(locValue);
-		console.log("text");
-		console.log(locInputText);
+		console.log(locValue)
+		console.log(locValue.toLowerCasee());
+		
         });
- 
       };
     </script>  
   </body>
