@@ -92,6 +92,7 @@
 					    }
 				    };
 				    xhr.onreadystatechange = getZip;
+				    xhr.responseType = "json";
 				    xhr.open("GET",url);
 				    xhr.send();
 			    }; 
