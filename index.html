@@ -56,8 +56,9 @@
 		    let adjustAndRender = (location1,location2)=>{
 			    let loc1Value = location1.value;
 			    let loc2Value = location2.value;
-			    console.log(loc1Value);
-			    console.log(loc2Value);
+			    return (
+				    console.log(loc1Value),
+				    console.log(loc2Value));
 		    };
 		    loc1.addEventListener("keyup",adjustAndRender(loc1,loc2));
 	    };
