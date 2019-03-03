@@ -88,6 +88,8 @@
 				    
 				    let getZip =()=>{
 					    if(xhr.readyState === XMLHttpRequest.Done){
+						    console.log(xhr.readyState);
+						    console.log(xhr.status);
 						    if(xhr.status = 200){
 							    console.log(xhr.responseText);
 						    }else {
