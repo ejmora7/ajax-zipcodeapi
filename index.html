@@ -81,7 +81,19 @@
 				    let state1 = L1StateValue;
 				    let endpoint = `${format}/${city1}/${state1}`;
 				    let url = apiurl + endpoint; 
-				    console.log(url);
+				    
+				    let getZip =()=>{
+					    if(xhr.readyState === XMLHttpRequest.Done){
+						    if(xhr.status = 200){
+							    console.log(xhr.responseText);
+						    }else {
+							    console.log("there was a problem with the request");
+						    }
+					    }
+				    };
+				    xhr.onreadystatechange = getZip;
+				    xhr.open("GET",url);
+				    xhr.send();
 			    }; 
 			    doRequest();
 		    });
