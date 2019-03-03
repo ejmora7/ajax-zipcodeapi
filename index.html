@@ -45,6 +45,9 @@
         <input id="location2" type="text" placeholder="new york"> 
         <input id="location2State" class="statewidth" type="text" placeholder="ny" maxlength="2">
       </div>
+      <div class="inputs">
+        <input id="request" type="button" value="Get Distance"> 
+      </div>	    
     </div> 
     <script type="text/javascript">
 	    window.onload=()=>{
@@ -52,11 +55,12 @@
 		    const loc2 = document.getElementById("location2");
 		    const loc1State = document.getElementById("location1State");
 		    const loc2State = document.getElementById("location2State");
+		    const req = document.getElementById("request");
 		    let insertNode = ((refNode,newNode)=>{
 			    refNode.appendChild(newNode);
 		    });
 		    
-		    loc1.addEventListener("keyup",(e)=>{  
+		    req.addEventListener("click",(e)=>{  
 			    let L1Value = loc1.value;
 			    let L1StateValue = loc1State.value; 
 			    let L2Value = loc2.value;
