@@ -70,7 +70,7 @@
 				    console.log("they are empty");
 			    }
 			    
-			    let doRequest = ()=>{
+			    let doRequest = () =>{
 				    let xhr = new XMLHttpRequest();
 				    
 				    //https://www.zipcodeapi.com/rest/DwGe5NqiaZhXNDA7nFb2sdXP1PXx0M7C3jksaatKwuUUbgO9U7ukRivebPsxpAHn/city-zips.json/San Diego/ca
@@ -82,10 +82,8 @@
 				    let endpoint = `${format}/${city1}/${state1}`;
 				    let url = apiurl + endpoint; 
 				    console.log(url);
-				    //xhr.onreadystatechange = "clabackfunction";
-				   // xhr.open();
-				    //xhr.send();
-			    };    
+			    }; 
+			    doRequest();
 		    });
 	    };
     </script>  
