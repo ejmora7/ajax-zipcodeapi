@@ -55,28 +55,40 @@
 		    let insertNode = ((refNode,newNode)=>{
 			    refNode.appendChild(newNode);
 		    });
-		    let adjustInputs = (l1,l1State,l2,l2State)=>{
-			    let loc1Value = l1.value;
-			    let loc2Value = l2.value;
-			    let loc1State = l1State.value;
-			    let loc2State = l2State.value;
-		            
-			    return {
-				    loc1Value:loc1State,
-				    loc2Value:loc2State
-				   }
-		    };
-		    loc1.addEventListener("keyup",(e)=>{
-			    /*
-			    let loc1Value = loc1.value;
-			    let loc2Value = loc2.value;
+		    
+		    loc1.addEventListener("keyup",(e)=>{  
+			    let L1Value = loc1.value;
+			    let L1StateValue = loc1State.value; 
+			    let L2Value = loc2.value;
+			    let L2StateValue = loc2State.value;
+			    L1Value.toLowerCase();
+			    L1StateValue.tolowerCase();
+			    L2Value.toLowerCase();
+			    L2StateValue.toLowerCase();
+			    
 			    if(loc1Value === "" || loc2Value ===""){
 				    console.log("they are empty");
 			    }
-			    */
-			    adjustInputs(loc1,loc2State,loc2,loc2State).then((obj)=>{
-			    	console.log(obj);
-			    });
+			    
+			    let doRequest = ()=>{
+				    let xhr = new XMLHttpRequest();
+				    
+				    //https://www.zipcodeapi.com/rest/DwGe5NqiaZhXNDA7nFb2sdXP1PXx0M7C3jksaatKwuUUbgO9U7ukRivebPsxpAHn/city-zips.json/San Diego/ca
+				    let apiurl = "https://www.zipcodeapi.com/rest/DwGe5NqiaZhXNDA7nFb2sdXP1PXx0M7C3jksaatKwuUUbgO9U7ukRivebPsxpAHn/city-zips.";
+				    
+				    let format = "json"
+				    let city1 = L1Value;
+				    let state1 = L1StateValue;
+				    let endpoint = `${format}/${city1}/${state1}`;
+				    let url = apiurl + endpoint; 
+				    console.log(url);
+				    //xhr.onreadystatechange = "clabackfunction";
+				   // xhr.open();
+				    //xhr.send();
+			    };
+			    
+			    
+			    
 		    });
 	    };
     </script>  
