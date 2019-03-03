@@ -47,21 +47,19 @@
       </div>
     </div> 
     <script type="text/javascript">
-      window.onload=()=>{
-	const loc1 = document.getElementById("location1");      
-        const loc2 = document.getElementById("location2");
-  
-        let insertNode = ((refNode,newNode)=>{
-  	      refNode.appendChild(newNode);
-        });
-  
-        loc1.addEventListener("keyup",(e)=>{
-		let locValue = loc1.value;
-		console.log(locValue)
-		console.log(locValue.toLowerCase());
-		
-        });
-      };
+	    window.onload=()=>{
+		    const loc1 = document.getElementById("location1");
+		    const loc2 = document.getElementById("location2");
+		    let insertNode = ((refNode,newNode)=>{
+			    refNode.appendChild(newNode);
+		    });
+		    let adjustAndRender = (location1,location2)=>{
+			    let loc1Value = location1.value;
+			    let loc2Value = location2.value;
+			    console.log(loc1Value);
+			    console.log(loc2Value);
+		    };
+		    loc1.addEventListener("keyup",adjustAndRender(loc1,loc2));	    
     </script>  
   </body>
 </html>
