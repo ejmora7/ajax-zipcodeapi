@@ -60,8 +60,11 @@
 			    let loc2Value = l2.value;
 			    let loc1State = l1State.value;
 			    let loc2State = l2State.value;
-		            console.log(loc1Value);
-			    console.log(loc2Value);
+		            
+			    return {
+				    loc1Value:loc1State,
+				    loc2Value:loc2State
+				   }
 		    };
 		    loc1.addEventListener("keyup",(e)=>{
 			    /*
@@ -71,7 +74,9 @@
 				    console.log("they are empty");
 			    }
 			    */
-			    adjustInputs(loc1,loc2State,loc2,loc2State);
+			    adjustInputs(loc1,loc2State,loc2,loc2State).then((obj)=>{
+			    	console.log(obj);
+			    });
 		    });
 	    };
     </script>  
