@@ -15,6 +15,10 @@
 		font-family: Verdana,Helvetica,sans-serif;
 		font-size: 16px;
       	    }
+	    h4 {
+	    	line-height: 1.5rem;
+		font-weight: 500;
+	    }
 	    label {
 	    	display:block;
 	    }
@@ -46,7 +50,11 @@
     <h1>
       What is the distance?
     </h1>
-    <h4>By entering locations by zip code or city name the distance between the two will be shown.</h4>
+    <h4>In this approach, I have the user input city names and states 
+	    that I use to make an ajax request to an api that will respond with the zipcodes for each city. 
+	    I then handle the response with gathering the first zip code of each city. I then run one final ajax 
+	    request with the zip codes that will respond with a distance between the two locations in miles. 
+	    I then run a function places the distance in the document.</h4>
     <p>Enter a location by city name.</p>
     <div id="form1">
       <div class="inputs">
