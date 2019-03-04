@@ -8,23 +8,37 @@
     <style>
       	    html, body {
       	     	height: 100%;
-      	    	 margin: 0;
-      	    	 padding: 0;
-      	   	  box-sizing: border-box;
+      	    	margin: 0;
+      	    	padding: 0;
+      	   	box-sizing: border-box;
+		text-align: center;
+		font-family: Verdana,Helvetica,sans-serif;
+		font-size: 16px;
       	    }
 	    label {
 	    	display:block;
 	    }
       	    input {
-       	   	 width: 100px;
-       	   	 height: 20px;
+       	   	 width: 10rem;
+       	   	 height: 7rem;
       	    }
       	    .inputs {
-      	     	 display: inline-block;
-      	    	 margin-right: 30px;
+      	     	 display: block;
+      	    	 margin: 1rem auto;
+		 text-align: left;
       	    }
 	    .statewidth {
-	    	width: 33px;
+	    	width: 3rem;
+	    }
+	    .requestButton {
+	    	width:14rem;
+		hieght:9rem;
+		background-color: #292929;
+		margin: 1.4rem;    
+		color:#fff;
+	    }
+	    .requestButton:hover{
+	    	background-color: #000;   
 	    }
     </style>
   </head>
@@ -36,17 +50,17 @@
     <p>Enter a location by city name.</p>
     <div id="form1">
       <div class="inputs">
-        <label for="location1">Location 1</label>
+        <label for="location1">Location:</label>
         <input id="location1" type="text" placeholder="san diego">
         <input id="location1State" class="statewidth" type="text" placeholder="ca" maxlength="2">
       </div>
       <div class="inputs">
-        <label for="location2">Location 2</label> 
+        <label for="location2">Location:</label> 
         <input id="location2" type="text" placeholder="new york"> 
         <input id="location2State" class="statewidth" type="text" placeholder="ny" maxlength="2">
       </div>
       <div class="inputs">
-        <input id="request" type="button" value="Get Distance"> 
+        <input id="request" class="requestButton" type="button" value="Get Distance"> 
       </div>	    
     </div> 
     <script type="text/javascript">
@@ -104,7 +118,7 @@
 						let distance = last.distance;
 						let div = document.createElement("div");
 						div.setAttribute("style","margin: 1rem; text-align: center; color: #4d4dff; font-size: 1.7rem; font-weight:900");
-						div.innerText = `Distance: ${distance}`;
+						div.textContent = `Distance: ${distance} miles`;
 						insertNode(form,div);	
 					});
     				});
