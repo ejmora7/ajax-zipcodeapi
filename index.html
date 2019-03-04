@@ -51,6 +51,7 @@
     </div> 
     <script type="text/javascript">
 	    window.onload=()=>{
+		    const form = documnet.getElementById("form1");
 		    const loc1 = document.getElementById("location1");
 		    const loc2 = document.getElementById("location2");
 		    const loc1State = document.getElementById("location1State");
@@ -101,12 +102,10 @@
 					createRequest(distURL,function(lastResponse){
 						let last = JSON.parse(lastResponse);
 						let distance = last.distance;
-						console.log("AS IS distance");
-						console.log(distance);
-						console.log("AS IS last.distance[0]");
-						console.log(last.distance[0]);
-						console.log("AS IS JSON.stringify(distance)");
-						console.log(JSON.stringify(distance));
+						let div = document.createElement("div");
+						div.setAttribute("style","margin: 1rem; text-align: center; color: #4d4dff; font-size: 1.7rem; font-weight:900");
+						div.innerText = `Distance: ${distance}`;
+						insertNode(form,div);	
 					});
     				});
 			    });
