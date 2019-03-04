@@ -94,6 +94,10 @@
 		    let insertNode = ((refNode,newNode)=>{
 			    refNode.appendChild(newNode);
 		    });
+		    let div = document.createElement("div");
+		    div.id = "distanceText";
+		    div.setAttribute("style","margin: 1rem; text-align: center; font-style: italic; color: #4d4dff; font-size: 1.7rem; font-weight:900");
+		    insertNode(form,div);
 		    
 		    req.addEventListener("click",(e)=>{  
 			    let L1Value = loc1.value;
@@ -136,10 +140,7 @@
 					createRequest(distURL,function(lastResponse){
 						let last = JSON.parse(lastResponse);
 						let distance = last.distance;
-						let div = document.createElement("div");
-						div.setAttribute("style","margin: 1rem; text-align: center; color: #4d4dff; font-size: 1.7rem; font-weight:900");
-						div.textContent = `Distance: ${distance} miles`;
-						insertNode(form,div);	
+						div.innerText = `Distance: ${distance} miles`;	
 					});
     				});
 			    });
