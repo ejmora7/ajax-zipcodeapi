@@ -98,10 +98,11 @@
 		    const loc1State = document.getElementById("location1State");
 		    const loc2State = document.getElementById("location2State");
 		    const req = document.getElementById("request");
-		    let inputs = [loc1,loc2,loc1State,loc2State];
+		    let inputs = [loc1,loc2State,loc2,loc2State];
 		    inputs.forEach((el)=>{
 			    el.addEventListener("click",()=>{
 				    el.style.boxShadow = "none";
+				    el.style.border="2px solid #000";
 			    
 			    });
 		    });
@@ -130,6 +131,7 @@
 				    if(inputs[i].value===""){
 					    alert("Please input a value intto the field.");
 					    inputs[i].style.boxShadow = "0px 0px 12px -1px #FF8C00";
+					    inputs[i].style.border="2px solid #FF8C00";
 					    return false;
 				    }
 			    }
@@ -153,7 +155,9 @@
 				if(first.zip_codes.length === 0){
 					alert("No zip codes exist for the city you've entered. <br>Please check your spelling in both the city and state boxes.");
 					loc1.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+					loc1.style.border = "2px solid #FF800"
 					loc1State.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+					loc1State.style.border = "2px solid #FF8C00";
 					return false;
 				}
     				zipcode1 = first.zip_codes[0];
@@ -163,7 +167,9 @@
 					if(second.zip_codes.length === 0){
 						alert("No zip codes exist for the city you've entered. <br>Please check your spelling in both the city and state boxes.");
 						loc2.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+						loc2.style.border = "2px solid #FF800"
 						loc2State.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+						loc2State.style.border = "2px solid #FF8C00";
 						return false;
 					}
 					zipcode2 = second.zip_codes[0];
