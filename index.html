@@ -65,7 +65,7 @@
     <h4>In this approach, I have the user input city names and states 
 	    that I use to make an ajax request to an api that will respond with the zipcodes for each city. 
 	    I then handle the response with gathering the first zip code of each city. I then run one final ajax 
-	    request with the zip codes that will respond with a distance between the two locations in miles. 
+	    request with the zip codes that will respond with an approximate distance between the two locations in miles. 
 	    I then run a function places the distance in the document.</h4>
     <p>Enter a location by city name.</p>
     <div id="form1">
@@ -96,7 +96,7 @@
 		    });
 		    let div = document.createElement("div");
 		    div.id = "distanceText";
-		    div.setAttribute("style","margin: 1rem; text-align: center; font-style: italic; color: #4d4dff; font-size: 1.7rem; font-weight:900");
+		    div.setAttribute("style","margin: 1rem; text-align: center; font-style: italic; font-size: 1.7rem; font-weight:900");
 		    insertNode(form,div);
 		    
 		    req.addEventListener("click",(e)=>{  
@@ -140,7 +140,7 @@
 					createRequest(distURL,function(lastResponse){
 						let last = JSON.parse(lastResponse);
 						let distance = last.distance;
-						div.innerText = `Distance: ${distance} miles`;	
+						div.innerText = `Between ${L1Value} and ${L2Value} - Approx. ${distance} miles`;	
 					});
     				});
 			    });
