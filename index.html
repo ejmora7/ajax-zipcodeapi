@@ -45,6 +45,7 @@
       	     	 display: block;
       	    	 margin: 1rem auto;
 		 text-align: left;
+		 outline:none;
       	    }
 	    .statewidth {
 	    	width: 3rem;
@@ -145,7 +146,11 @@
 					if(xhr.readyState === XMLHttpRequest.DONE){
     						if(xhr.status === 200){
     							cb(this.responseText);
-    						}
+    						}else if(xhr.status === 429){
+							alert(`A limit has been placed on this application by https://www.zipcodeapi.com standards. Please try again in one hour.`);
+						}else{
+							alert("Opps, there was a problem with the request, please try again.");
+						}
    					}
     				};
     				xhr.send()
