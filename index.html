@@ -31,7 +31,9 @@
       	    input {
        	   	 width: 10rem;
        	   	 height: 2rem;
-		 border: 2px solid #000;   
+		 border: 2px solid #000;
+		 font-size: 1rem;
+		 font-weight:400;
       	    }
 	    input::placeholder {
   		color: #aaa;
@@ -43,7 +45,6 @@
       	     	 display: block;
       	    	 margin: 1rem auto;
 		 text-align: left;
-		 font-size: .9rem;
       	    }
 	    .statewidth {
 	    	width: 3rem;
@@ -105,6 +106,15 @@
 		    div.setAttribute("style","margin: 1rem; text-align: center; font-style: italic; font-size: 1.7rem; font-weight:900");
 		    insertNode(form,div);
 		    
+		    let inputs = [loc1,loc2,loc1State,loc2State];
+		    for(let i=0;i<values;i++){
+		    	if(inputs[i].value===""){
+				alert("Please input a value to the field.");
+				inputs[i].style.boxShadow = -1px 1px 3px -1px #4d4dff;
+				break;
+	            	}
+		    }
+		    
 		    req.addEventListener("click",(e)=>{  
 			    let L1Value = loc1.value;
 			    let L1StateValue = loc1State.value; 
@@ -116,7 +126,7 @@
 			    L2Value.toLowerCase();
 			    L2StateValue.toLowerCase();
 			    
-			    if(L1Value === "" || L2Value ===""){
+			    if(L1Value === "" && L2Value ==="" &&  ){
 				    console.log("they are empty");
 			    }
 
