@@ -128,8 +128,8 @@
 			    
 		    	    for(let i=0;i<inputs.length;i++){
 				    if(inputs[i].value===""){
-					    alert("Please input a value to the field.");
-					    inputs[i].style.boxShadow = "0px 0px 10px -1px #add8e6";
+					    alert("Please input a value intto the field.");
+					    inputs[i].style.boxShadow = "0px 0px 12px -1px #FF8C00";
 					    return false;
 				    }
 			    }
@@ -150,10 +150,22 @@
 			    }
 			    createRequest(firstURL, function(firstResponse) {
 			    	let first = JSON.parse(firstResponse);
+				if(first.zip_codes.length === 0){
+					alert("No zip codes exist for the city you've entered. <br>Please check your spelling in both the city and state boxes.");
+					loc1.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+					loc1State.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+					return false;
+				}
     				zipcode1 = first.zip_codes[0];
 				console.log(first.zip_codes[0]);
    				createRequest(secondURL, function(secondResponse) {
 					let second = JSON.parse(secondResponse);
+					if(second.zip_codes.length === 0){
+						alert("No zip codes exist for the city you've entered. <br>Please check your spelling in both the city and state boxes.");
+						loc2.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+						loc2State.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+						return false;
+					}
 					zipcode2 = second.zip_codes[0];
 					console.log(zipcode1 + ":"+zipcode2);
 					let distURL = "https://www.zipcodeapi.com/rest/js-ObvnGRv3w8HfHqoTQieXlpS2nWOHAeTs9mzanc0BPSTvMHffuTpTcexJ8KVzL7zS/distance.json/"+zipcode1+"/"+zipcode2+"/mile";
