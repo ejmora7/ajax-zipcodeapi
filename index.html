@@ -90,17 +90,16 @@
     				xhr.send()
 			    }
 			    createRequest(firstURL, function(firstResponse) {
-				
 			    	let first = JSON.parse(firstResponse);
     				zipcode1 = first.zip_codes[0];
-				//console.log(first.zip_codes[0]);
+				console.log(first.zip_codes[0]);
    				createRequest(secondURL, function(secondResponse) {
 					let second = JSON.parse(secondResponse);
 					zipcode2 = second.zip_codes[0];
-					//console.log(second.zip_codes[0]);
+					console.log(second.zip_codes[0]);
     				});
 			    });
-			    console.log(zipcode1 +" "+ zipcode2);
+			    
 		    });
 	    };
     </script>  
