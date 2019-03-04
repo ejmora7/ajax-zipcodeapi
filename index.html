@@ -98,22 +98,22 @@
 		    const loc1State = document.getElementById("location1State");
 		    const loc2State = document.getElementById("location2State");
 		    const req = document.getElementById("request");
+		    let inputs = [loc1,loc2,loc1State,loc2State];
+		    inputs.forEach((el)=>{
+			    el.addEventListener("click",()=>{
+				    el.style.boxShadow = "none";
+			    
+			    });
+		    });
+		    
 		    let insertNode = ((refNode,newNode)=>{
 			    refNode.appendChild(newNode);
 		    });
+		    
 		    let div = document.createElement("div");
 		    div.id = "distanceText";
 		    div.setAttribute("style","margin: 1rem; text-align: center; font-style: italic; font-size: 1.7rem; font-weight:900");
 		    insertNode(form,div);
-		    
-		    let inputs = [loc1,loc2,loc1State,loc2State];
-		    for(let i=0;i<inputs.length;i++){
-		    	if(inputs[i].value===""){
-				alert("Please input a value to the field.");
-				inputs[i].style.boxShadow = "0px 0px 10px -1px #add8e6";
-				break;
-	            	}
-		    }
 		    
 		    req.addEventListener("click",(e)=>{  
 			    let L1Value = loc1.value;
@@ -125,6 +125,14 @@
 			    L1StateValue.toLowerCase();
 			    L2Value.toLowerCase();
 			    L2StateValue.toLowerCase();
+			    
+		    	    for(let i=0;i<inputs.length;i++){
+				    if(inputs[i].value===""){
+					    alert("Please input a value to the field.");
+					    inputs[i].style.boxShadow = "0px 0px 10px -1px #add8e6";
+					    return false;
+				    }
+			    }
 			    
 			    let firstURL = "https://www.zipcodeapi.com/rest/js-ObvnGRv3w8HfHqoTQieXlpS2nWOHAeTs9mzanc0BPSTvMHffuTpTcexJ8KVzL7zS/city-zips.json/"+L1Value+"/"+L1StateValue;
 			    let secondURL = "https://www.zipcodeapi.com/rest/js-ObvnGRv3w8HfHqoTQieXlpS2nWOHAeTs9mzanc0BPSTvMHffuTpTcexJ8KVzL7zS/city-zips.json/"+L2Value+"/"+L2StateValue;
