@@ -65,6 +65,7 @@
 			    let L1StateValue = loc1State.value; 
 			    let L2Value = loc2.value;
 			    let L2StateValue = loc2State.value;
+			    let zipcode1,zipcode2;
 			    L1Value.toLowerCase();
 			    L1StateValue.toLowerCase();
 			    L2Value.toLowerCase();
@@ -89,15 +90,17 @@
     				xhr.send()
 			    }
 			    createRequest(firstURL, function(firstResponse) {
-			    	let first = JSON.parse(firstResponse);
-    				console.log(first);
-				console.log(first.zip_codes[2]);
+				let first,second;
+			    	first = JSON.parse(firstResponse);
+    				zipcode1 = first.zip_codes[0];
+				//console.log(first.zip_codes[0]);
    				createRequest(secondURL, function(secondResponse) {
-					let second = JSON.parse(secondResponse);
-					console.log(second);
-					console.log(second.zip_codes[2]);
+					second = JSON.parse(secondResponse);
+					zipcode2 = second.zip_code[0];
+					//console.log(second.zip_codes[0]);
     				});
 			    });
+			    console.log(zipcode1 +" "+ zipcode2);
 		    });
 	    };
     </script>  
