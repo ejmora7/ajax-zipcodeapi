@@ -118,6 +118,10 @@
 		    insertNode(form,div);
 		    
 		    req.addEventListener("click",(e)=>{  
+			    inputs.forEach((el)=>{
+				    el.style.boxShadow = "none";
+				    el.style.border="2px solid #000";
+			    });
 			    let L1Value = loc1.value;
 			    let L1StateValue = loc1State.value; 
 			    let L2Value = loc2.value;
@@ -158,7 +162,7 @@
 			    createRequest(firstURL, function(firstResponse) {
 			    	let first = JSON.parse(firstResponse);
 				if(first.zip_codes.length === 0){
-					alert("No zip codes exist for the city you've entered. <br>Please check your spelling in both the city and state boxes.");
+					alert(`No zip codes exist for ${L1Value},${L1StateValue}. Please check your spelling.`);
 					loc1.style.boxShadow = "0px 0px 12px -1px #FF8C00";
 					loc1.style.border = "2px solid #FF800"
 					loc1State.style.boxShadow = "0px 0px 12px -1px #FF8C00";
@@ -170,7 +174,7 @@
    				createRequest(secondURL, function(secondResponse) {
 					let second = JSON.parse(secondResponse);
 					if(second.zip_codes.length === 0){
-						alert("No zip codes exist for the city you've entered. <br>Please check your spelling in both the city and state boxes.");
+						alert(`No zip codes exist for ${L2Value},${L2StateValue}. Please check your spelling.`);
 						loc2.style.boxShadow = "0px 0px 12px -1px #FF8C00";
 						loc2.style.border = "2px solid #FF800"
 						loc2State.style.boxShadow = "0px 0px 12px -1px #FF8C00";
