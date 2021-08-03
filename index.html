@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      AJAX|ZipCodeApi
+    </title>
+    <meta charset="UTF-8">  
+    <style>
+      	    html, body {
+      	     	height: 100%;
+      	    	margin: 0;
+      	    	padding: 0;
+      	   	box-sizing: border-box;
+		text-align: center;
+		font-family: Verdana,Helvetica,sans-serif;
+		font-size: 15px;
+      	    }
+	    h4 {
+	    	line-height: 1.5rem;
+		font-weight: 700;
+		font-size: .8rem;
+		max-width: 50rem;
+		margin: 1.4rem auto 3rem auto;
+	    }
+	    p, label {
+	    	font-weight:900;
+	    }
+	    label {
+	    	display:block;
+	    }
+      	    input {
+       	   	 width: 10rem;
+       	   	 height: 2rem;
+		 border: 2px solid #000;
+		 font-size: 1rem;
+		 font-weight:400;
+      	    }
+	    input::placeholder {
+  		color: #aaa;
+  		font-size: .8rem;
+  		font-style: italic;
+	    }
+      	    .inputs {
+		 width: 15rem;    
+      	     	 display: block;
+      	    	 margin: 1rem auto;
+		 text-align: left;
+		 outline:none;
+      	    }
+	    .statewidth {
+	    	width: 3rem;
+	    }
+	    .requestButton {
+	    	width:14rem;
+		height:2.5rem;
+		background-color: #555;
+		margin: 1.4rem auto;    
+		color:#fff;
+		font-weight:900;
+		font-size: 1rem;
+		border: none;
+		cursor: pointer;
+	    }
+	    .requestButton:focus{
+		    outline:none;
+	    }
+	    .requestButton:hover{
+	    	background-color: #000;   
+	    }
+    </style>
+  </head>
+  <body>
+    <h1>
+      What is the distance?
+    </h1>
+    <h4>In this approach, I have the user input city names and states 
+	    that I use to make an ajax request to an api that will respond with the zipcodes for each city. 
+	    I then handle the response with gathering the first zip code of each city. I then run one final ajax 
+	    request with the zip codes that will respond with an approximate distance between the two locations in miles. 
+	    I then run a function places the distance in the document.</h4>
+    <p>Enter a location by city name.</p>
+    <div id="form1">
+      <div class="inputs">
+        <label for="location1">Location:</label>
+        <input id="location1" type="text" placeholder="san diego">
+        <input id="location1State" class="statewidth" type="text" placeholder="ca" maxlength="2">
+      </div>
+      <div class="inputs">
+        <label for="location2">Location:</label> 
+        <input id="location2" type="text" placeholder="new york"> 
+        <input id="location2State" class="statewidth" type="text" placeholder="ny" maxlength="2">
+      </div>
+      <div class="inputs">
+        <input id="request" class="requestButton" type="button" value="Get Distance"> 
+      </div>	    
+    </div> 
+    <script type="text/javascript">
+	    window.onload=()=>{
+		    const form = document.getElementById("form1");
+		    const loc1 = document.getElementById("location1");
+		    const loc2 = document.getElementById("location2");
+		    const loc1State = document.getElementById("location1State");
+		    const loc2State = document.getElementById("location2State");
+		    const req = document.getElementById("request");
+		    let inputs = [loc1,loc1State,loc2,loc2State];
+		    inputs.forEach((el)=>{
+			    el.addEventListener("click",()=>{
+				    el.style.boxShadow = "none";
+				    el.style.border="2px solid #000";
+			    
+			    });
+		    });
+		    
+		    let insertNode = ((refNode,newNode)=>{
+			    refNode.appendChild(newNode);
+		    });
+		    
+		    let div = document.createElement("div");
+		    div.id = "distanceText";
+		    div.setAttribute("style","margin: 1rem; text-align: center; font-style: italic; font-size: 1.7rem; font-weight:900");
+		    insertNode(form,div);
+		    
+		    req.addEventListener("click",(e)=>{  
+			    inputs.forEach((el)=>{
+				    el.style.boxShadow = "none";
+				    el.style.border="2px solid #000";
+			    });
+			    let L1Value = loc1.value;
+			    let L1StateValue = loc1State.value; 
+			    let L2Value = loc2.value;
+			    let L2StateValue = loc2State.value;
+			    let zipcode1,zipcode2;
+			    L1Value.toLowerCase();
+			    L1StateValue.toLowerCase();
+			    L2Value.toLowerCase();
+			    L2StateValue.toLowerCase();
+			    
+		    	    for(let i=0;i<inputs.length;i++){
+				    if(inputs[i].value===""){
+					    alert("Please input a value into the field.");
+					    inputs[i].style.boxShadow = "0px 0px 12px -1px #FF8C00";
+					    inputs[i].style.border="2px solid #FF8C00";
+					    return false;
+				    }
+			    }
+			    
+			    let firstURL = "https://www.zipcodeapi.com/rest/js-ObvnGRv3w8HfHqoTQieXlpS2nWOHAeTs9mzanc0BPSTvMHffuTpTcexJ8KVzL7zS/city-zips.json/"+L1Value+"/"+L1StateValue;
+			    let secondURL = "https://www.zipcodeapi.com/rest/js-ObvnGRv3w8HfHqoTQieXlpS2nWOHAeTs9mzanc0BPSTvMHffuTpTcexJ8KVzL7zS/city-zips.json/"+L2Value+"/"+L2StateValue;
+			    function createRequest(url, cb) {
+    				var xhr = new XMLHttpRequest();
+    				xhr.open('GET', url);
+    				xhr.onreadystatechange = function() {
+					if(xhr.readyState === XMLHttpRequest.DONE){
+    						if(xhr.status === 200){
+    							cb(this.responseText);
+    						}else if(xhr.status === 429){
+							alert(`A limit has been placed on this application by https://www.zipcodeapi.com standards. Please try again in one hour.`);
+						}else{
+							alert("Opps, there was a problem with the request, please try again.");
+						}
+   					}
+    				};
+    				xhr.send()
+			    }
+			    createRequest(firstURL, function(firstResponse) {
+			    	let first = JSON.parse(firstResponse);
+				if(first.zip_codes.length === 0){
+					alert(`No zip codes exist for ${L1Value},${L1StateValue}. Please check your spelling.`);
+					loc1.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+					loc1.style.border = "2px solid #FF800"
+					loc1State.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+					loc1State.style.border = "2px solid #FF8C00";
+					return false;
+				}
+    				zipcode1 = first.zip_codes[0];
+				console.log(first.zip_codes[0]);
+   				createRequest(secondURL, function(secondResponse) {
+					let second = JSON.parse(secondResponse);
+					if(second.zip_codes.length === 0){
+						alert(`No zip codes exist for ${L2Value},${L2StateValue}. Please check your spelling.`);
+						loc2.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+						loc2.style.border = "2px solid #FF800"
+						loc2State.style.boxShadow = "0px 0px 12px -1px #FF8C00";
+						loc2State.style.border = "2px solid #FF8C00";
+						return false;
+					}
+					zipcode2 = second.zip_codes[0];
+					console.log(zipcode1 + ":"+zipcode2);
+					let distURL = "https://www.zipcodeapi.com/rest/js-ObvnGRv3w8HfHqoTQieXlpS2nWOHAeTs9mzanc0BPSTvMHffuTpTcexJ8KVzL7zS/distance.json/"+zipcode1+"/"+zipcode2+"/mile";
+					createRequest(distURL,function(lastResponse){
+						let last = JSON.parse(lastResponse);
+						let distance = last.distance;
+						div.innerText = `Between ${L1Value} and ${L2Value} - Approx. ${distance} miles`;	
+					});
+    				});
+			    });
+			    
+		    });
+	    };
+    </script>  
+  </body>
+</html>
